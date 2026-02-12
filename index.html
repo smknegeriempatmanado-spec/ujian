@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #0056b3; /* Biru Pendidikan */
+            --primary-color: #0056b3;
             --secondary-color: #f4f7f6;
             --accent-color: #ffc107;
             --text-color: #333;
@@ -52,36 +52,38 @@
         }
 
         .brand img {
-            height: 50px;
-            width: 50px;
+            height: 45px;
+            width: 45px;
             object-fit: cover;
             border-radius: 50%;
         }
 
         .brand-text h1 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--primary-color);
             font-weight: 700;
+            line-height: 1.2;
         }
 
         .brand-text p {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #666;
         }
 
         .student-info {
-            display: none; /* Hidden until login */
+            display: none;
             font-weight: 600;
             color: var(--primary-color);
             background: #e3f2fd;
-            padding: 5px 15px;
+            padding: 5px 12px;
             border-radius: 20px;
+            font-size: 0.85rem;
         }
 
-        /* --- Main Content Area --- */
+        /* --- Main Content --- */
         main {
             flex: 1;
-            padding: 2rem;
+            padding: 2rem 1rem; /* Padding disesuaikan agar nyaman di HP */
             max-width: 1200px;
             margin: 0 auto;
             width: 100%;
@@ -91,11 +93,10 @@
             position: relative;
         }
 
-        /* --- Sections Logic --- */
         section {
-            display: none; /* All sections hidden by default */
+            display: none;
             width: 100%;
-            animation: fadeIn 0.5s ease-in-out;
+            animation: fadeIn 0.4s ease-in-out;
         }
 
         section.active {
@@ -110,10 +111,10 @@
         /* --- Login Section --- */
         .card {
             background: var(--white);
-            padding: 2.5rem;
+            padding: 2rem;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            max-width: 450px;
+            max-width: 400px;
             margin: 0 auto;
             text-align: center;
         }
@@ -124,7 +125,7 @@
         }
 
         .form-group {
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
             text-align: left;
         }
 
@@ -132,20 +133,15 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
+            font-size: 0.9rem;
         }
 
         .form-control {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary-color);
         }
 
         .btn {
@@ -180,30 +176,20 @@
         }
 
         .countdown {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 700;
             color: var(--text-color);
-            font-variant-numeric: tabular-nums;
         }
 
-        .status-badge {
-            display: inline-block;
-            background: #ffeeba;
-            color: #856404;
-            padding: 5px 12px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-
-        /* --- Exam Area --- */
+        /* --- Exam Layout --- */
         .exam-layout {
             display: grid;
-            grid-template-columns: 1fr 300px;
+            grid-template-columns: 1fr 280px; /* Desktop: Kiri Soal, Kanan Info */
             gap: 20px;
-            height: 80vh; /* Fixed height for exam area */
+            height: 80vh;
         }
 
+        /* Container Iframe */
         .iframe-container {
             background: var(--white);
             border-radius: var(--radius);
@@ -219,6 +205,7 @@
             border: none;
         }
 
+        /* Sidebar Info (Desktop) */
         .exam-sidebar {
             display: flex;
             flex-direction: column;
@@ -231,19 +218,23 @@
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             text-align: center;
+            border: 1px solid #eee;
         }
 
         .timer-card h3 {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            color: #666;
-            margin-bottom: 0.5rem;
+            color: #888;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
         }
 
         .exam-timer {
             font-size: 2.5rem;
             font-weight: 700;
             color: var(--primary-color);
+            font-variant-numeric: tabular-nums;
+            line-height: 1;
         }
 
         .exam-timer.warning {
@@ -257,12 +248,22 @@
             100% { transform: scale(1); }
         }
 
+        .violation-badge {
+            background: #ffeeba;
+            color: #856404;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
         .rules-card {
             background: var(--white);
             padding: 1.5rem;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #555;
         }
 
@@ -272,21 +273,21 @@
         }
 
         .rules-card li {
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
-        /* --- Modal / Toast --- */
+        /* --- Modal --- */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.8);
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 2000;
             visibility: hidden;
             opacity: 0;
             transition: 0.3s;
@@ -301,8 +302,10 @@
             background: var(--white);
             padding: 2rem;
             border-radius: var(--radius);
-            max-width: 400px;
+            max-width: 90%;
+            width: 350px;
             text-align: center;
+            border-top: 5px solid var(--danger-color);
         }
 
         .finish-screen {
@@ -319,27 +322,67 @@
         /* --- Footer --- */
         footer {
             text-align: center;
-            padding: 1.5rem;
+            padding: 1rem;
             color: #888;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             background: var(--white);
             border-top: 1px solid #eee;
         }
 
-        /* Responsive */
+        /* --- RESPONSIVE MOBILE (HP) --- */
         @media (max-width: 768px) {
-            .exam-layout {
-                grid-template-columns: 1fr;
-                height: auto;
-            }
-            .iframe-container {
-                height: 600px;
-            }
             main {
-                padding: 1rem;
+                padding: 0.5rem;
             }
-            .brand-text h1 {
-                font-size: 1rem;
+
+            .exam-layout {
+                display: flex;
+                flex-direction: column; /* Stack vertical */
+                height: auto; /* Tinggi mengikuti konten */
+            }
+
+            /* ORDER PENTING: Timer harus di atas (Order 1), Iframe di bawah (Order 2) */
+            .exam-sidebar {
+                order: 1; 
+                width: 100%;
+            }
+
+            .iframe-container {
+                order: 2;
+                height: 75vh; /* Agar soal tetap tinggi di layar HP */
+                margin-top: 10px;
+            }
+
+            /* Timer Sticky di HP (Menempel di atas saat scroll) */
+            .timer-card {
+                position: sticky;
+                top: 0;
+                z-index: 50;
+                border-radius: 0 0 12px 12px; /* Sudut bawah tumpul */
+                box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+                padding: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                text-align: left;
+            }
+
+            .timer-card h3 {
+                display: none; /* Sembunyikan teks "Sisa Waktu" di HP agar hemat ruang */
+            }
+
+            .exam-timer {
+                font-size: 1.8rem;
+                color: var(--danger-color); /* Merah agar menonjol */
+            }
+
+            .rules-card {
+                display: none; /* Sembunyikan aturan panjang di HP agar fokus ke soal */
+            }
+            
+            .btn {
+                font-size: 0.9rem;
+                padding: 10px;
             }
         }
     </style>
@@ -349,7 +392,6 @@
     <!-- Header -->
     <header>
         <div class="brand">
-            <!-- Placeholder Logo Sekolah -->
             <img src="https://picsum.photos/seed/smkn4manado/100/100" alt="Logo SMK N 4 Manado">
             <div class="brand-text">
                 <h1>UJIAN SEKOLAH</h1>
@@ -367,15 +409,15 @@
         <!-- SECTION 1: LOGIN -->
         <section id="section-login" class="active">
             <div class="card">
-                <h2>Selamat Datang</h2>
-                <p style="margin-bottom: 20px; color: #666;">Silakan masukkan data diri untuk memulai ujian.</p>
+                <h2>Akses Ujian</h2>
+                <p style="margin-bottom: 15px; color: #666; font-size: 0.9rem;">Masukkan data diri dengan benar.</p>
                 <form id="loginForm">
                     <div class="form-group">
                         <label for="studentName">Nama Lengkap</label>
-                        <input type="text" id="studentName" class="form-control" placeholder="Contoh: Budi Santoso" required>
+                        <input type="text" id="studentName" class="form-control" placeholder="Nama Siswa" required>
                     </div>
                     <div class="form-group">
-                        <label for="studentClass">Kelas / Jurusan</label>
+                        <label for="studentClass">Kelas</label>
                         <select id="studentClass" class="form-control" required>
                             <option value="">Pilih Kelas</option>
                             <option value="XII TKJ 1">XII TKJ 1</option>
@@ -384,7 +426,7 @@
                             <option value="XII MM 1">XII MM 1</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn">Masuk Ruang Ujian</button>
+                    <button type="submit" class="btn">Masuk</button>
                 </form>
             </div>
         </section>
@@ -392,14 +434,14 @@
         <!-- SECTION 2: WAITING ROOM -->
         <section id="section-waiting">
             <div class="waiting-container">
-                <div class="status-badge">Jadwal Ujian</div>
-                <h2>Ujian Akan Dimulai Dalam:</h2>
+                <div style="color: var(--primary-color); font-weight: bold; margin-bottom: 10px;">JADWAL UJIAN</div>
+                <h2>Ujian Dimulai Dalam:</h2>
                 <div class="timer-box">
-                    <div class="countdown" id="startCountdown">00:00:10</div>
-                    <p style="margin-top: 10px; color: #666;">Harap bersiap dan jangan refresh halaman.</p>
+                    <div class="countdown" id="startCountdown">00:10</div>
+                    <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">Harap bersiap dan jangan refresh halaman.</p>
                 </div>
-                <div style="margin-top: 20px;">
-                    <button id="forceStartBtn" class="btn" style="max-width: 200px; background-color: var(--success-color);">Mulai Sekarang (Demo)</button>
+                <div style="margin-top: 25px;">
+                    <button id="forceStartBtn" class="btn" style="max-width: 200px; background-color: var(--success-color);">Mulai Sekarang</button>
                 </div>
             </div>
         </section>
@@ -407,65 +449,75 @@
         <!-- SECTION 3: EXAM INTERFACE -->
         <section id="section-exam">
             <div class="exam-layout">
-                <!-- Google Form Container -->
+                
+                <!-- Sidebar (Di Desktop Kanan, Di HP Atas) -->
+                <div class="exam-sidebar">
+                    <div class="timer-card">
+                        <h3>Sisa Waktu</h3>
+                        <div class="exam-timer" id="examTimer">01:00:00</div>
+                    </div>
+                    
+                    <div class="rules-card">
+                        <h4 style="color: var(--danger-color); margin-bottom: 10px;">PERINGATAN KERAS!</h4>
+                        <p>Anda dilarang pindah aplikasi/tab.</p>
+                        <div class="violation-badge">
+                            Pelanggaran: <span id="violationCount">0</span> / 5
+                        </div>
+                        <p style="margin-top:10px; font-size: 0.8rem; color: #dc3545;">
+                            Jika mencapai 5 kali, ujian otomatis selesai.
+                        </p>
+                        <ul style="margin-top: 10px; font-size: 0.8rem;">
+                            <li>Waktu berjalan otomatis.</li>
+                            <li>Koneksi stabil.</li>
+                            <li>Klik tombol Selesai jika sudah selesai.</li>
+                        </ul>
+                        <button onclick="finishExam(false)" class="btn" style="background-color: var(--danger-color); margin-top: 20px;">Selesai Ujian</button>
+                    </div>
+                </div>
+
+                <!-- Iframe Container -->
                 <div class="iframe-container" id="iframeContainer">
-                    <!-- Ganti src di bawah ini dengan Link Google Form Anda -->
-                    <!-- Contoh link form (Dummy form) -->
+                    <!-- Ganti URL Google Form di bawah ini -->
                     <iframe 
                         id="googleFormFrame"
                         src="https://docs.google.com/forms/d/e/1FAIpQLSd9-2XuX2iX3iX4iX5iX6iX7iX8iX9iX0iX1iX/viewform?embedded=true" 
                         loading="lazy">
                     </iframe>
                     
-                    <!-- Overlay untuk waktu habis -->
-                    <div id="timeUpOverlay" style="display:none; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.95); z-index:10; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+                    <!-- Overlay Waktu Habis -->
+                    <div id="timeUpOverlay" style="display:none; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.98); z-index:10; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
                         <h2 style="color:var(--danger-color); font-size:2rem; margin-bottom:10px;">WAKTU HABIS!</h2>
-                        <p>Silakan kumpulkan jawaban Anda jika belum terkirim otomatis.</p>
-                        <button onclick="finishExam()" class="btn" style="margin-top:20px; width: auto; padding: 10px 30px;">Selesai & Keluar</button>
+                        <p>Jawaban otomatis dikumpulkan (jika diatur di Form).</p>
+                        <button onclick="finishExam(true)" class="btn" style="margin-top:20px; width: auto; padding: 10px 30px;">Tutup Ujian</button>
                     </div>
                 </div>
 
-                <!-- Sidebar Info -->
-                <div class="exam-sidebar">
-                    <div class="timer-card">
-                        <h3>Sisa Waktu</h3>
-                        <div class="exam-timer" id="examTimer">00:00:00</div>
-                    </div>
-                    <div class="rules-card">
-                        <h4>Ketentuan Ujian</h4>
-                        <ul>
-                            <li>Dilarang membuka tab lain (dapat terdeteksi).</li>
-                            <li>Waktu pengerjaan terhitung otomatis.</li>
-                            <li>Pastikan koneksi internet stabil.</li>
-                            <li>Klik "Kirim" pada Google Form jika sudah selesai.</li>
-                        </ul>
-                    </div>
-                    <button onclick="finishExam()" class="btn" style="background-color: var(--danger-color);">Selesai Ujian</button>
-                </div>
             </div>
         </section>
 
         <!-- SECTION 4: FINISHED -->
         <section id="section-finish" class="finish-screen">
             <div class="card">
-                <div class="finish-icon">🎉</div>
-                <h2>Ujian Selesai</h2>
-                <p>Terima kasih telah mengikuti Ujian Sekolah di SMK Negeri 4 Manado.</p>
-                <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">Jawaban Anda telah tersimpan (di Google Form).</p>
-                <div style="margin-top: 20px;">
-                    <a href="https://smkn4manado.sch.id" target="_blank" class="btn" style="display: inline-block; width: auto;">Kembali ke Website Sekolah</a>
-                </div>
+                <div class="finish-icon">ЁЯЪл</div>
+                <h2>Ujian Berakhir</h2>
+                <p>Waktu ujian Anda telah habis atau Anda melakukan pelanggaran berat.</p>
+                <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">Silakan tinggalkan ruangan dengan tertib.</p>
             </div>
         </section>
 
     </main>
 
-    <!-- Modal Warning (Tab Switching) -->
+    <!-- Modal Warning -->
     <div id="warningModal" class="modal-overlay">
         <div class="modal-content">
-            <h3 style="color: var(--danger-color);">⚠️ Peringatan!</h3>
-            <p style="margin: 15px 0;">Anda terdeteksi berpindah tab/aplikasi selama ujian berlangsung. Tindakan ini tercatat.</p>
-            <button class="btn" onclick="closeWarningModal()">Kembali ke Ujian</button>
+            <div style="font-size: 3rem; margin-bottom: 10px;">тЪая╕П</div>
+            <h3 style="color: var(--danger-color);">PERINGATAN!</h3>
+            <p style="margin: 10px 0;">Anda terdeteksi berpindah tab atau aplikasi.</p>
+            <p style="font-weight: bold; color: var(--danger-color);">
+                Sisa kesempatan: <span id="modalRemainingChance">4</span> kali lagi.
+            </p>
+            <p style="font-size: 0.8rem; margin-top: 5px;">Pada pelanggaran ke-5, ujian otomatis tertutup.</p>
+            <button class="btn" onclick="closeWarningModal()">Kembali Kerjakan</button>
         </div>
     </div>
 
@@ -474,64 +526,49 @@
     </footer>
 
     <script>
-        // --- Konfigurasi ---
-        // 1. Waktu Tunggu (detik) sebelum form muncul otomatis (simulasi countdown)
-        const WAIT_TIME_SECONDS = 10; 
-        
-        // 2. Durasi Ujian (dalam menit)
-        const EXAM_DURATION_MINUTES = 60; 
+        // --- KONFIGURASI ---
+        const WAIT_TIME_SECONDS = 10; // Waktu tunggu hitung mundur (detik)
+        const EXAM_DURATION_MINUTES = 60; // Durasi ujian (menit)
+        const MAX_VIOLATIONS = 5; // Batas maksimal pindah tab
 
-        // --- State Variables ---
+        // --- VARIABLE ---
         let studentName = "";
         let studentClass = "";
         let startTimerInterval;
         let examTimerInterval;
         let warningCount = 0;
 
-        // --- DOM Elements ---
+        // --- DOM ELEMENTS ---
         const sectionLogin = document.getElementById('section-login');
         const sectionWaiting = document.getElementById('section-waiting');
         const sectionExam = document.getElementById('section-exam');
         const sectionFinish = document.getElementById('section-finish');
         const studentInfoDisplay = document.getElementById('studentInfoDisplay');
-        const iframeContainer = document.getElementById('iframeContainer');
+        const violationCountDisplay = document.getElementById('violationCount');
         
-        // --- 1. Login Logic ---
+        // --- 1. LOGIN ---
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             studentName = document.getElementById('studentName').value;
             studentClass = document.getElementById('studentClass').value;
 
-            // Update Header
-            studentInfoDisplay.textContent = `${studentName} - ${studentClass}`;
+            studentInfoDisplay.textContent = `${studentName} (${studentClass})`;
             studentInfoDisplay.style.display = 'block';
 
-            // Switch Section
             switchSection(sectionLogin, sectionWaiting);
-            
-            // Start Countdown
             initStartCountdown();
         });
 
-        // --- 2. Start Countdown Logic (Waiting Room) ---
+        // --- 2. COUNTDOWN TUNGGU ---
         function initStartCountdown() {
             let timeLeft = WAIT_TIME_SECONDS;
             const display = document.getElementById('startCountdown');
 
             function updateTimer() {
-                // Format HH:MM:SS
-                let hours = Math.floor(timeLeft / 3600);
-                let minutes = Math.floor((timeLeft % 3600) / 60);
+                let minutes = Math.floor(timeLeft / 60);
                 let seconds = timeLeft % 60;
-
-                // Jika kurang dari 1 jam, tampilkan MM:SS saja
-                if (hours === 0) {
-                    display.textContent = 
-                        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                } else {
-                    display.textContent = 
-                        `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                }
+                display.textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
                 if (timeLeft <= 0) {
                     clearInterval(startTimerInterval);
@@ -541,27 +578,26 @@
                 }
             }
 
-            // Immediate update then interval
             updateTimer();
             startTimerInterval = setInterval(updateTimer, 1000);
 
-            // Tombol paksa mulai (untuk demo/testing)
+            // Tombol paksa mulai
             document.getElementById('forceStartBtn').addEventListener('click', () => {
                 clearInterval(startTimerInterval);
                 startExam();
             });
         }
 
-        // --- 3. Start Exam Logic ---
+        // --- 3. MULAI UJIAN ---
         function startExam() {
             switchSection(sectionWaiting, sectionExam);
             initExamTimer();
-            activateTabSecurity();
+            activateTabSecurity(); // Aktifkan fitur anti-pindah tab
         }
 
-        // --- 4. Exam Duration Timer ---
+        // --- 4. TIMER UJIAN ---
         function initExamTimer() {
-            let duration = EXAM_DURATION_MINUTES * 60; // Convert to seconds
+            let duration = EXAM_DURATION_MINUTES * 60;
             const display = document.getElementById('examTimer');
             const overlay = document.getElementById('timeUpOverlay');
 
@@ -573,15 +609,10 @@
                 display.textContent = 
                     `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
-                // Warning state when < 5 minutes
-                if (duration < 300) {
-                    display.classList.add('warning');
-                }
+                if (duration < 300) display.classList.add('warning');
 
                 if (duration <= 0) {
                     clearInterval(examTimerInterval);
-                    display.textContent = "00:00:00";
-                    // Block view
                     overlay.style.display = 'flex';
                 }
 
@@ -589,37 +620,67 @@
             }, 1000);
         }
 
-        // --- 5. Finish Exam Logic ---
-        function finishExam() {
-            if(confirm("Apakah Anda yakin ingin mengakhiri ujian?")) {
-                clearInterval(examTimerInterval);
-                switchSection(sectionExam, sectionFinish);
-                document.querySelector('header').style.display = 'none'; // Hide header on finish
-                document.querySelector('footer').style.display = 'none';
-            }
-        }
-
-        // --- Helper: Switch Section ---
-        function switchSection(from, to) {
-            from.classList.remove('active');
-            // Timeout kecil untuk transisi animasi
-            setTimeout(() => {
-                to.classList.add('active');
-            }, 50);
-        }
-
-        // --- Security: Page Visibility API ---
+        // --- 5. LOGIKA PINDAH TAB (UPDATED) ---
         function activateTabSecurity() {
             document.addEventListener("visibilitychange", function() {
+                // Jika tab tidak aktif (hidden)
                 if (document.hidden) {
                     warningCount++;
-                    document.getElementById('warningModal').classList.add('show');
+                    updateViolationUI();
+
+                    if (warningCount >= MAX_VIOLATIONS) {
+                        // OTOMATIS SELESAI TANPA KONFIRMASI
+                        finishExam(true); 
+                    } else {
+                        // TAMPILKAN PERINGATAN
+                        document.getElementById('modalRemainingChance').textContent = MAX_VIOLATIONS - warningCount;
+                        document.getElementById('warningModal').classList.add('show');
+                    }
                 }
             });
         }
 
+        function updateViolationUI() {
+            violationCountDisplay.textContent = warningCount;
+            // Ubah warna jika bahaya
+            if (warningCount >= 4) {
+                violationCountDisplay.parentElement.style.backgroundColor = "#dc3545";
+                violationCountDisplay.parentElement.style.color = "white";
+            }
+        }
+
         function closeWarningModal() {
             document.getElementById('warningModal').classList.remove('show');
+        }
+
+        // --- 6. SELESAI UJIAN ---
+        // Parameter 'force' = true jika otomatis (waktu habis/curang)
+        function finishExam(force = false) {
+            if (force) {
+                // Langsung tutup tanpa konfirmasi
+                finalizeExam();
+            } else {
+                // Konfirmasi manual dari tombol
+                if(confirm("Apakah Anda yakin sudah selesai dan ingin mengumpulkan jawaban?")) {
+                    finalizeExam();
+                }
+            }
+        }
+
+        function finalizeExam() {
+            clearInterval(examTimerInterval);
+            switchSection(sectionExam, sectionFinish);
+            document.querySelector('header').style.display = 'none';
+            document.querySelector('footer').style.display = 'none';
+            window.scrollTo(0,0);
+        }
+
+        // Helper Switch Section
+        function switchSection(from, to) {
+            from.classList.remove('active');
+            setTimeout(() => {
+                to.classList.add('active');
+            }, 50);
         }
 
     </script>
