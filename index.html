@@ -9,12 +9,11 @@
         :root {
             --primary-color: #0056b3;
             --secondary-color: #f4f7f6;
-            --accent-color: #ffc107;
             --text-color: #333;
             --danger-color: #dc3545;
             --success-color: #28a745;
             --white: #ffffff;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             --radius: 12px;
         }
 
@@ -36,13 +35,13 @@
         /* --- Header --- */
         header {
             background-color: var(--white);
-            padding: 1rem 2rem;
+            padding: 0.8rem 2rem;
             box-shadow: var(--shadow);
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            position: relative;
+            height: 70px;
         }
 
         .brand {
@@ -52,17 +51,17 @@
         }
 
         .brand img {
-            height: 45px;
-            width: 45px;
+            height: 40px;
+            width: 40px;
             object-fit: cover;
             border-radius: 50%;
         }
 
         .brand-text h1 {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--primary-color);
             font-weight: 700;
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
         .brand-text p {
@@ -75,22 +74,21 @@
             font-weight: 600;
             color: var(--primary-color);
             background: #e3f2fd;
-            padding: 5px 12px;
+            padding: 6px 15px;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
         }
 
         /* --- Main Content --- */
         main {
             flex: 1;
-            padding: 2rem 1rem; /* Padding disesuaikan agar nyaman di HP */
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 1.5rem;
             width: 100%;
+            max-width: 1800px; /* Lebar maksimal sangat lebar agar form benar-benar besar */
+            margin: 0 auto;
             display: flex;
             justify-content: center;
-            align-items: center;
-            position: relative;
+            align-items: flex-start;
         }
 
         section {
@@ -111,11 +109,11 @@
         /* --- Login Section --- */
         .card {
             background: var(--white);
-            padding: 2rem;
+            padding: 2.5rem;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             max-width: 400px;
-            margin: 0 auto;
+            margin: 5vh auto;
             text-align: center;
         }
 
@@ -125,7 +123,7 @@
         }
 
         .form-group {
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             text-align: left;
         }
 
@@ -138,7 +136,7 @@
 
         .form-control {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 1rem;
@@ -164,32 +162,38 @@
         /* --- Waiting Room --- */
         .waiting-container {
             text-align: center;
+            margin-top: 10vh;
         }
 
         .timer-box {
             background: var(--white);
-            padding: 2rem;
+            padding: 2.5rem;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             display: inline-block;
             margin-top: 2rem;
+            min-width: 300px;
         }
 
         .countdown {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 700;
             color: var(--text-color);
+            font-variant-numeric: tabular-nums;
         }
 
-        /* --- Exam Layout --- */
+        /* --- DESKTOP EXAM LAYOUT (FIXED) --- */
+        /* HTML Order: Sidebar -> Iframe */
+        /* CSS Grid: Sidebar (Fixed Kecil) -> Iframe (Flex Besar) */
         .exam-layout {
             display: grid;
-            grid-template-columns: 1fr 280px; /* Desktop: Kiri Soal, Kanan Info */
-            gap: 20px;
-            height: 80vh;
+            /* Kolom 1: Sidebar 280px | Kolom 2: Google Form Sisa Ruangan (1fr) */
+            grid-template-columns: 280px 1fr; 
+            gap: 25px;
+            height: 85vh;
+            width: 100%;
         }
 
-        /* Container Iframe */
         .iframe-container {
             background: var(--white);
             border-radius: var(--radius);
@@ -197,19 +201,26 @@
             overflow: hidden;
             position: relative;
             height: 100%;
+            width: 100%;
+            /* Mencegah elemen iframe melebar melebihi container */
+            min-width: 0; 
         }
 
         iframe {
             width: 100%;
             height: 100%;
             border: none;
+            display: block;
         }
 
         /* Sidebar Info (Desktop) */
         .exam-sidebar {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
+            height: 100%;
+            /* Sidebar tidak bisa mengecil dibawah 280px */
+            min-width: 280px; 
         }
 
         .timer-card {
@@ -265,6 +276,7 @@
             box-shadow: var(--shadow);
             font-size: 0.85rem;
             color: #555;
+            flex-grow: 1;
         }
 
         .rules-card ul {
@@ -273,7 +285,7 @@
         }
 
         .rules-card li {
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
         /* --- Modal --- */
@@ -303,9 +315,9 @@
             padding: 2rem;
             border-radius: var(--radius);
             max-width: 90%;
-            width: 350px;
+            width: 380px;
             text-align: center;
-            border-top: 5px solid var(--danger-color);
+            border-top: 6px solid var(--danger-color);
         }
 
         .finish-screen {
@@ -314,12 +326,11 @@
         }
         
         .finish-icon {
-            font-size: 4rem;
+            font-size: 5rem;
             color: var(--success-color);
             margin-bottom: 1rem;
         }
 
-        /* --- Footer --- */
         footer {
             text-align: center;
             padding: 1rem;
@@ -330,59 +341,74 @@
         }
 
         /* --- RESPONSIVE MOBILE (HP) --- */
+        /* Tampilan HP DIPERTAHANKAN */
         @media (max-width: 768px) {
             main {
                 padding: 0.5rem;
+                padding-top: 1rem;
+                align-items: flex-start;
             }
 
+            /* Di HP, ubah dari Grid menjadi Flex Box */
             .exam-layout {
                 display: flex;
-                flex-direction: column; /* Stack vertical */
-                height: auto; /* Tinggi mengikuti konten */
+                flex-direction: column; /* Stack vertikal */
+                height: auto;
             }
 
-            /* ORDER PENTING: Timer harus di atas (Order 1), Iframe di bawah (Order 2) */
+            /* ORDER: Sidebar (Timer) Atas -> Iframe Bawah */
             .exam-sidebar {
-                order: 1; 
+                order: 1; /* Muncul pertama */
                 width: 100%;
+                margin-bottom: 10px;
             }
 
             .iframe-container {
-                order: 2;
-                height: 75vh; /* Agar soal tetap tinggi di layar HP */
-                margin-top: 10px;
+                order: 2; /* Muncul kedua */
+                height: 78vh;
             }
 
-            /* Timer Sticky di HP (Menempel di atas saat scroll) */
+            /* Timer Sticky di HP */
             .timer-card {
                 position: sticky;
                 top: 0;
                 z-index: 50;
-                border-radius: 0 0 12px 12px; /* Sudut bawah tumpul */
+                border-radius: 0 0 12px 12px;
                 box-shadow: 0 4px 10px rgba(0,0,0,0.15);
                 padding: 10px;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 text-align: left;
+                margin-bottom: 10px;
             }
 
             .timer-card h3 {
-                display: none; /* Sembunyikan teks "Sisa Waktu" di HP agar hemat ruang */
+                display: none;
             }
 
             .exam-timer {
                 font-size: 1.8rem;
-                color: var(--danger-color); /* Merah agar menonjol */
+                color: var(--danger-color);
             }
 
+            /* Hide Rules di HP */
             .rules-card {
-                display: none; /* Sembunyikan aturan panjang di HP agar fokus ke soal */
+                display: none;
+            }
+            
+            .violation-badge {
+                display: none;
             }
             
             .btn {
                 font-size: 0.9rem;
                 padding: 10px;
+            }
+            
+            .card {
+                width: 100%;
+                margin: 20px 0;
             }
         }
     </style>
@@ -410,7 +436,7 @@
         <section id="section-login" class="active">
             <div class="card">
                 <h2>Akses Ujian</h2>
-                <p style="margin-bottom: 15px; color: #666; font-size: 0.9rem;">Masukkan data diri dengan benar.</p>
+                <p style="margin-bottom: 15px; color: #666; font-size: 0.9rem;">Silakan login untuk memulai.</p>
                 <form id="loginForm">
                     <div class="form-group">
                         <label for="studentName">Nama Lengkap</label>
@@ -438,7 +464,7 @@
                 <h2>Ujian Dimulai Dalam:</h2>
                 <div class="timer-box">
                     <div class="countdown" id="startCountdown">00:10</div>
-                    <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">Harap bersiap dan jangan refresh halaman.</p>
+                    <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">Jangan refresh halaman ini.</p>
                 </div>
                 <div style="margin-top: 25px;">
                     <button id="forceStartBtn" class="btn" style="max-width: 200px; background-color: var(--success-color);">Mulai Sekarang</button>
@@ -450,7 +476,7 @@
         <section id="section-exam">
             <div class="exam-layout">
                 
-                <!-- Sidebar (Di Desktop Kanan, Di HP Atas) -->
+                <!-- Sidebar (Info & Timer) -->
                 <div class="exam-sidebar">
                     <div class="timer-card">
                         <h3>Sisa Waktu</h3>
@@ -459,25 +485,27 @@
                     
                     <div class="rules-card">
                         <h4 style="color: var(--danger-color); margin-bottom: 10px;">PERINGATAN KERAS!</h4>
-                        <p>Anda dilarang pindah aplikasi/tab.</p>
+                        <p>Dilarang berpindah tab/aplikasi.</p>
                         <div class="violation-badge">
                             Pelanggaran: <span id="violationCount">0</span> / 5
                         </div>
                         <p style="margin-top:10px; font-size: 0.8rem; color: #dc3545;">
                             Jika mencapai 5 kali, ujian otomatis selesai.
                         </p>
-                        <ul style="margin-top: 10px; font-size: 0.8rem;">
+                        <ul style="margin-top: 15px; font-size: 0.85rem;">
                             <li>Waktu berjalan otomatis.</li>
-                            <li>Koneksi stabil.</li>
-                            <li>Klik tombol Selesai jika sudah selesai.</li>
+                            <li>Koneksi internet harus stabil.</li>
+                            <li>Klik tombol "Selesai" jika sudah selesai.</li>
                         </ul>
-                        <button onclick="finishExam(false)" class="btn" style="background-color: var(--danger-color); margin-top: 20px;">Selesai Ujian</button>
+                        <div style="margin-top: auto;">
+                            <button onclick="finishExam(false)" class="btn" style="background-color: var(--danger-color);">Selesai Ujian</button>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Iframe Container -->
+                <!-- Iframe Container (Google Form) -->
                 <div class="iframe-container" id="iframeContainer">
-                    <!-- Ganti URL Google Form di bawah ini -->
+                    <!-- Ganti URL Google Form di sini -->
                     <iframe 
                         id="googleFormFrame"
                         src="https://docs.google.com/forms/d/e/1FAIpQLSd9-2XuX2iX3iX4iX5iX6iX7iX8iX9iX0iX1iX/viewform?embedded=true" 
@@ -486,8 +514,8 @@
                     
                     <!-- Overlay Waktu Habis -->
                     <div id="timeUpOverlay" style="display:none; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.98); z-index:10; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
-                        <h2 style="color:var(--danger-color); font-size:2rem; margin-bottom:10px;">WAKTU HABIS!</h2>
-                        <p>Jawaban otomatis dikumpulkan (jika diatur di Form).</p>
+                        <h2 style="color:var(--danger-color); font-size:2.5rem; margin-bottom:10px;">WAKTU HABIS!</h2>
+                        <p>Jawaban Anda telah dikumpulkan (jika diatur di Google Form).</p>
                         <button onclick="finishExam(true)" class="btn" style="margin-top:20px; width: auto; padding: 10px 30px;">Tutup Ujian</button>
                     </div>
                 </div>
@@ -498,10 +526,10 @@
         <!-- SECTION 4: FINISHED -->
         <section id="section-finish" class="finish-screen">
             <div class="card">
-                <div class="finish-icon">ЁЯЪл</div>
+                <div class="finish-icon">🚫</div>
                 <h2>Ujian Berakhir</h2>
-                <p>Waktu ujian Anda telah habis atau Anda melakukan pelanggaran berat.</p>
-                <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">Silakan tinggalkan ruangan dengan tertib.</p>
+                <p>Waktu ujian Anda telah habis atau terdeteksi pelanggaran berat.</p>
+                <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">Terima kasih.</p>
             </div>
         </section>
 
@@ -510,7 +538,7 @@
     <!-- Modal Warning -->
     <div id="warningModal" class="modal-overlay">
         <div class="modal-content">
-            <div style="font-size: 3rem; margin-bottom: 10px;">тЪая╕П</div>
+            <div style="font-size: 3rem; margin-bottom: 10px;">⚠️</div>
             <h3 style="color: var(--danger-color);">PERINGATAN!</h3>
             <p style="margin: 10px 0;">Anda terdeteksi berpindah tab atau aplikasi.</p>
             <p style="font-weight: bold; color: var(--danger-color);">
@@ -527,9 +555,9 @@
 
     <script>
         // --- KONFIGURASI ---
-        const WAIT_TIME_SECONDS = 10; // Waktu tunggu hitung mundur (detik)
-        const EXAM_DURATION_MINUTES = 60; // Durasi ujian (menit)
-        const MAX_VIOLATIONS = 5; // Batas maksimal pindah tab
+        const WAIT_TIME_SECONDS = 10; 
+        const EXAM_DURATION_MINUTES = 60; 
+        const MAX_VIOLATIONS = 5; 
 
         // --- VARIABLE ---
         let studentName = "";
@@ -581,7 +609,6 @@
             updateTimer();
             startTimerInterval = setInterval(updateTimer, 1000);
 
-            // Tombol paksa mulai
             document.getElementById('forceStartBtn').addEventListener('click', () => {
                 clearInterval(startTimerInterval);
                 startExam();
@@ -592,7 +619,7 @@
         function startExam() {
             switchSection(sectionWaiting, sectionExam);
             initExamTimer();
-            activateTabSecurity(); // Aktifkan fitur anti-pindah tab
+            activateTabSecurity(); 
         }
 
         // --- 4. TIMER UJIAN ---
@@ -620,19 +647,16 @@
             }, 1000);
         }
 
-        // --- 5. LOGIKA PINDAH TAB (UPDATED) ---
+        // --- 5. LOGIKA PINDAH TAB ---
         function activateTabSecurity() {
             document.addEventListener("visibilitychange", function() {
-                // Jika tab tidak aktif (hidden)
                 if (document.hidden) {
                     warningCount++;
                     updateViolationUI();
 
                     if (warningCount >= MAX_VIOLATIONS) {
-                        // OTOMATIS SELESAI TANPA KONFIRMASI
                         finishExam(true); 
                     } else {
-                        // TAMPILKAN PERINGATAN
                         document.getElementById('modalRemainingChance').textContent = MAX_VIOLATIONS - warningCount;
                         document.getElementById('warningModal').classList.add('show');
                     }
@@ -642,7 +666,6 @@
 
         function updateViolationUI() {
             violationCountDisplay.textContent = warningCount;
-            // Ubah warna jika bahaya
             if (warningCount >= 4) {
                 violationCountDisplay.parentElement.style.backgroundColor = "#dc3545";
                 violationCountDisplay.parentElement.style.color = "white";
@@ -654,13 +677,10 @@
         }
 
         // --- 6. SELESAI UJIAN ---
-        // Parameter 'force' = true jika otomatis (waktu habis/curang)
         function finishExam(force = false) {
             if (force) {
-                // Langsung tutup tanpa konfirmasi
                 finalizeExam();
             } else {
-                // Konfirmasi manual dari tombol
                 if(confirm("Apakah Anda yakin sudah selesai dan ingin mengumpulkan jawaban?")) {
                     finalizeExam();
                 }
@@ -675,14 +695,12 @@
             window.scrollTo(0,0);
         }
 
-        // Helper Switch Section
         function switchSection(from, to) {
             from.classList.remove('active');
             setTimeout(() => {
                 to.classList.add('active');
             }, 50);
         }
-
     </script>
 </body>
 </html>
