@@ -481,6 +481,9 @@
                     <div class="timer-card">
                         <h3>Sisa Waktu</h3>
                         <div class="exam-timer" id="examTimer">01:00:00</div>
+                        <div id="lastMinuteWarning" style="margin-top:8px; font-size:0.85rem; color:var(--danger-color); display:none;">
+                            Sisa waktu kurang dari 1 menit. Segera selesaikan dan tekan tombol "Kirim" di Google Form.
+                        </div>
                     </div>
                     
                     <div class="rules-card">
@@ -495,11 +498,8 @@
                         <ul style="margin-top: 15px; font-size: 0.85rem;">
                             <li>Waktu berjalan otomatis.</li>
                             <li>Koneksi internet harus stabil.</li>
-                            <li>Klik tombol "Selesai" jika sudah selesai.</li>
+                            <li>Klik tombol "Kirim" pada Google Form jika sudah selesai.</li>
                         </ul>
-                        <div style="margin-top: auto;">
-                            <button onclick="finishExam(false)" class="btn" style="background-color: var(--danger-color);">Selesai Ujian</button>
-                        </div>
                     </div>
                 </div>
 
@@ -513,9 +513,9 @@
                     </iframe>
                     
                     <!-- Overlay Waktu Habis -->
-                    <div id="timeUpOverlay" style="display:none; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.98); z-index:10; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+                    <div id="timeUpOverlay" style="display:none; position:absolute; top:0; left:0; width:100%; height:75%; background:rgba(255,255,255,0.98); z-index:10; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
                         <h2 style="color:var(--danger-color); font-size:2.5rem; margin-bottom:10px;">WAKTU HABIS!</h2>
-                        <p>Jawaban Anda telah dikumpulkan (jika diatur di Google Form).</p>
+                        <p>Jika Anda sudah menekan tombol "Kirim" di Google Form, jawaban Anda sudah terkirim.</p>
                         <button onclick="finishExam(true)" class="btn" style="margin-top:20px; width: auto; padding: 10px 30px;">Tutup Ujian</button>
                     </div>
                 </div>
@@ -526,7 +526,7 @@
         <!-- SECTION 4: FINISHED -->
         <section id="section-finish" class="finish-screen">
             <div class="card">
-                <div class="finish-icon">🚫</div>
+                <div class="finish-icon">ЁЯЪл</div>
                 <h2>Ujian Berakhir</h2>
                 <p>Waktu ujian Anda telah habis atau terdeteksi pelanggaran berat.</p>
                 <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">Terima kasih.</p>
@@ -538,7 +538,7 @@
     <!-- Modal Warning -->
     <div id="warningModal" class="modal-overlay">
         <div class="modal-content">
-            <div style="font-size: 3rem; margin-bottom: 10px;">⚠️</div>
+            <div style="font-size: 3rem; margin-bottom: 10px;">тЪая╕П</div>
             <h3 style="color: var(--danger-color);">PERINGATAN!</h3>
             <p style="margin: 10px 0;">Anda terdeteksi berpindah tab atau aplikasi.</p>
             <p style="font-weight: bold; color: var(--danger-color);">
@@ -556,7 +556,7 @@
     <script>
         // --- KONFIGURASI ---
         const WAIT_TIME_SECONDS = 10; 
-        const EXAM_DURATION_MINUTES = 60; 
+        const EXAM_DURATION_MINUTES = 2; 
         const MAX_VIOLATIONS = 5; 
 
         // --- VARIABLE ---
@@ -573,6 +573,7 @@
         const sectionFinish = document.getElementById('section-finish');
         const studentInfoDisplay = document.getElementById('studentInfoDisplay');
         const violationCountDisplay = document.getElementById('violationCount');
+        const lastMinuteWarning = document.getElementById('lastMinuteWarning');
         
         // --- 1. LOGIN ---
         document.getElementById('loginForm').addEventListener('submit', function(e) {
@@ -637,6 +638,9 @@
                     `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
                 if (duration < 300) display.classList.add('warning');
+                if (duration <= 60 && duration >= 0 && lastMinuteWarning) {
+                    lastMinuteWarning.style.display = 'block';
+                }
 
                 if (duration <= 0) {
                     clearInterval(examTimerInterval);
